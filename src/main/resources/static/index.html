@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cintara Workflow Orchestrator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-logo">⚡</span>
+                <h1>Cintara Workflow</h1>
+            </div>
+            
+            <section class="menu-section">
+                <h2>Workflow Definitions</h2>
+                <div id="workflow-list" class="list-container">
+                    <!-- Workflow buttons will be rendered here -->
+                    <div class="loading-spinner">Loading workflows...</div>
+                </div>
+                <button id="btn-show-create" class="btn btn-secondary">+ Define New Workflow</button>
+            </section>
+
+            <section class="menu-section">
+                <h2>Execution History</h2>
+                <div id="execution-list" class="list-container">
+                    <!-- Execution history list -->
+                    <div class="empty-state">No executions yet</div>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Status Bar -->
+            <header class="top-bar">
+                <div id="active-info">
+                    <h2 id="active-title">Select a Workflow</h2>
+                    <p id="active-subtitle">Choose a definition from the sidebar to begin</p>
+                </div>
+                <div class="action-buttons">
+                    <button id="btn-execute" class="btn btn-primary" disabled>Execute Workflow</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-grid">
+                <!-- Visual Tracer Card -->
+                <section class="card tracer-card">
+                    <div class="card-header">
+                        <h3>Visual Step Tracker</h3>
+                        <div id="execution-badge" class="badge">No active execution</div>
+                    </div>
+                    <div class="card-body flex-center">
+                        <div id="flow-diagram" class="flow-diagram">
+                            <div class="flow-placeholder">Select or trigger an execution to view progress</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step Details & Variables -->
+                <section class="card variables-card">
+                    <div class="card-header">
+                        <h3>Execution Context</h3>
+                        <span class="card-subtitle">Aggregated Step Outputs</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="context-viewer" class="json-wrapper">
+                            <pre><code class="language-json">{}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Full JSON Response -->
+                <section class="card json-card">
+                    <div class="card-header">
+                        <h3>Execution Details (JSON)</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="json-viewer" class="json-wrapper">
+                            <pre><code class="language-json">{}</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Creating Workflow -->
+    <dialog id="create-modal" class="modal">
+        <div class="modal-content glass">
+            <h2>Define New Workflow</h2>
+            <form id="create-workflow-form">
+                <div class="form-group">
+                    <label for="workflow-id-input">Workflow ID</label>
+                    <input type="text" id="workflow-id-input" placeholder="e.g. contract-review" required>
+                </div>
+                <div class="form-group">
+                    <label for="workflow-json-input">Workflow Steps (JSON Array)</label>
+                    <textarea id="workflow-json-input" rows="12" placeholder='[
+  {
+    "name": "validate",
+    "input": {
+      "contractId": "123"
+    }
+  },
+  {
+    "name": "approve"
+  },
+  {
+    "name": "execute"
+  }
+]' required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-close-modal" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>

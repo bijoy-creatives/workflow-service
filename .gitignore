@@ -1,24 +1,60 @@
-# Compiled class file
+# ===============================
+# Java Build Artifacts
+# ===============================
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
 *.ear
+
+# Archives
 *.zip
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# ===============================
+# Build & Output Directories
+# ===============================
+bin/
+out/
+**/target/
+
+# ===============================
+# Logs and Temporary Files
+# ===============================
+*.log
+logs/
 hs_err_pid*
 replay_pid*
+.mtj.tmp/
+
+# ===============================
+# # Ignore all .pid files (service PIDs)
+# ===============================
+*.pid
+
+# ===============================
+# IDE Files
+# -------------------------------
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# ===============================
+# OS-Specific
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# BlueJ (Educational IDE)
+# ===============================
+*.ctxt
